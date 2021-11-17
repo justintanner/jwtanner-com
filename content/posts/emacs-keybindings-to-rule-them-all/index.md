@@ -122,7 +122,6 @@ end
 hotkeyModal:bind({'ctrl'}, 'x', startCtrlX, nil, nil)
 hotkeyModal:bind({'ctrl'}, 'f', forwardOrOpen, nil, nil)
 hotkeyModal:enter()
-
 ```
 
 ## I need data structure
