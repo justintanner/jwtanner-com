@@ -1,0 +1,66 @@
+{{- define "main" -}}
+<div class="container-fluid light-grey">
+  <div class="container">
+    <div class="row align-items-sm-center py-5">
+      <div class="col-sm-6 col-md-5 col-lg-4 order-sm-2 text-center">
+        {{- $face := .Resources.GetMatch "profile-pic.png" -}}
+        {{- $halfWidth := math.Floor (div $face.Width 2) -}}
+        {{- $half := $face.Resize (printf "%sx" (string $halfWidth)) -}}        
+        <img src="{{ $half.RelPermalink }}" srcset="{{ $face.RelPermalink }} 2x" alt="A picture of my face.">        
+      </div>
+      
+      <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-4 mt-sm-0">
+        <div class="text-center text-sm-start" id="intro">
+          <h3 class="text-uppercase">Hi I'm</h3>
+          <h1 class="text-uppercase">Justin Tanner</h1>
+          <h2 class="text-uppercase mb-4">Computer Programmer</h2>
+          <a href="mailto:hey@jwtanner.com" class="btn btn-dark font-montserrat">Email me &nbsp;{{ partial "svgs/paper-plane.html" }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="row d-sm-none">
+      <div class="col-12 pb-4 text-center">
+        {{ partial "svgs/angle-double-down.html" }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h2 class="text-center font-montserrat pt-4">Posts</h2>  
+</div>
+
+<div class="container-fluid flex-shrink-0">
+  <div class="container py-3">
+
+    {{- range (where .Site.RegularPages "Type" "posts") -}}
+    {{- $cover := .Resources.GetMatch "cover.jpg" -}}
+    {{- $resizedCover := $cover.Fill "1520x840" -}}
+    {{- $resizedCoverHalf := $cover.Fill "760x420" -}}    
+    <div class="card mb-3 mx-auto" style="max-width: 760px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <a href="{{ .Permalink }}">
+            <img src="{{ $resizedCoverHalf.RelPermalink }}" srcset="{{ $resizedCover.RelPermalink }} 2x" class="img-fluid rounded-start" alt="fixed">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{ .Permalink }}" class="text-dark">{{ .Title }}</a></h5>
+            <p class="card-text">{{ .Description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</div>
+
+<div class="footer mt-auto py-4">
+  <div class="d-flex justify-content-center">
+    <a href="mailto:hey@jwtanner.com" class="font-weight-bold text-dark text-decoration-none text-no-wrap text-decoration-onhover mx-3">{{ partial "svgs/bi-envelope.html" }} Email</a>
+    <a href="https://stackoverflow.com/users/609/justin-tanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-stack-overflow.html" }} Stackoverflow</a>
+    <a href="https://github.com/justintanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-github.html" }} Github</a>
+  </div>
+</div>
+{{- end -}}

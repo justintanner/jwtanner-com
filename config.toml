@@ -1,0 +1,7 @@
+baseURL = 'https://jwtanner.com/'
+languageCode = 'en-us'
+title = 'Justin Tanner: Computer Programmer'
+pygmentsUseClassic = false
+pygmentsCodeFences = true
+pygmentsCodeFencesGuessSyntax = true
+pygmentsUseClasses = true

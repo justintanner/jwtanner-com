@@ -1,0 +1,9 @@
+{{- $original := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) -}}
+{{- $halfWidth := (math.Floor (div $original.Width 2)) -}}
+{{- $half := $original.Resize (printf "%sx" (string $halfWidth)) -}}
+<div class="d-flex justify-content-center">
+  <figure class="figure my-4 text-center">
+    <img class="{{ .Get "class" }}" src="{{ $half.RelPermalink }}" srcset="{{ $original.RelPermalink }} 2x" alt="{{ .Get "alt" }}">      
+    <figcaption class="figure-caption text-center">{{ .Inner }}</figcaption>
+  </figure>
+</div>
