@@ -1,5 +1,3 @@
 +++
-title="Welcome!"
+title="Justin Tanner: Computer Programmer"
 +++
-
-BLah blah

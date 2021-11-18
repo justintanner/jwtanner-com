@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eng" xml:lang="eng">
+<head>
+<title>LED Wheel: Timing</title>
+<style type="text/css">@import url(led_wheel.css);</style>
+</head>
+<body>
+
+<div id="container">
+
+<div id="top"></div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a class="current" href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Timing</h1>
+
+  <p>The LED Wheel requires precise timing to achieve persistence of vision.  This section outlines the timers used by the micro-controller.</p>
+
+  <h2>Adapting to Speed Changes</h2>
+
+  <p>The speed of the Mitsumi DC motor ( or any DC motor ) varies slightly from rotation to rotation.  The following graph is a sample of RPM readings taken from the shaft encoder.  The motor is powered with 5V from a regulated power supply.</p>
+
+  <div class="centered_image"><img src="images/5VRPM_REG.jpg" border="0" alt="Mitsumi running @ 5V ( regulator )" /></div>
+
+  <p>This sample indicates a slight drift of <b>1 RPM</b>.  This is acceptable for most applications, but for the LED Wheel ignoring these changes would create jitter in the output. To deal with these small variations in speed we must have fine control over the blinking speed.</p>
+
+  <h2>Blinking Speed</h2>
+
+  <p>To blink a message it is convenient to visualize the LED Wheel in terms of <b>lines</b>.  A line represents one on / off blink of the 16 LEDs.  The following picture displays a simple view of one circle with 5 lines.</p>
+
+  <div class="centered_image"><img src="images/green_wheel.jpg" border="0" alt="green wheel" /></div>
+
+  <p>Next we need to know the current speed of the wheel provided by the <a href="shaft_encoder.html">shaft encoder</a>.  This speed can be represented in different ways: rotations per minute, rotations per second.  But for a micro-controller it is useful to represent the speed as <b>ticks per revolution</b>.</p>
+
+  <p>For every LED on / LED off period of this image, we need to calculate the time in ticks it will take to display.  This is calculated using the following formula.</p>
+
+  <p><b>(TICKS_PER_REVOLUTION) / (DESIRED_NUMBER_OF_LINES) = (TICKS_PER_LINE)</b></p>
+
+  <p>For example, say our <b>TICKS_PER_REVOLUTION = 1000</b> and <b>DESIRED_NUMBER_OF_LINES = 10</b>, then our <b>TICKS_PER_LINE</b> would be <b>100</b>.</p>
+
+  <p>Once we calculate the number of ticks we want for each line we must setup a timer.</p>
+
+  <h2>Blink Phase Timer</h2>
+
+  <p>To setup a timer in on an Atmel micro-controller we must first choose an initial frequency.  The higher the frequency more exact control of time we can achieve.</p>
+
+  <pre class="code">TCCR1B |= _BV(WGM12) | _BV(CS11);</pre>
+
+  <p>The previous command sets up timer 1 to run at (Fosc / 8) or 1Mhz.  This also puts the timer in "clear timer on compare match" mode.  This mode will clear the timer every time an output compare has occurred.</p>
+
+  <pre class="code">OCR1A = 1000;</pre>
+
+  <p>The output compare value of 1000 is initially seeded to the output compare register.  Every 1000 ticks @ 1Mhz this timer will fire a compare match.</p>
+
+  <pre class="code">TIMSK1 |= _BV(OCIE1A);</pre>  
+
+  <p>Finally the compare match interrupt vector is enabled, starting the timer.</p>
+
+  <p>With the timer setup we now control the exact length of each blink phase.  An initial value of <b>OCR1A = 1000;</b> will fire every 1000 ticks @ 1MHz or once every 1 millisecond.  To change the length of the blink phase we need to change the value stored in OCR1A.  Example OCR1A = 978; meaning once every 0.978ms.</p>
+
+  <h2>Synchronizing with the Shaft Encoder</h2>
+
+  <p>To adjust the the blink phase we used the <a href="shaft_encoder.html">shaft encoder</a>.  The shaft encoder uses an input capture, that fires when the arm reaches the top of a rotation.  To illustrate this, we place a start marker at the top of our example wheel.</p>
+
+  <div class="centered_image"><img src="images/start_marker.jpg" border="0" alt="start_marker" /></div>
+
+  <p>Upon reaching the start marker the shaft encoder adjusts the blink phase timer with a new value for <b>TICKS_PER_LINE</b>.  This <b>TICKS_PER_LINE</b> is based upon the previous rotations speed, which gives a good indication of the next rotations speed. By constantly updating the <b>TICKS_PER_LINE</b> every rotation the LED Wheel can display a constant image, that remains completely stationary.</p>
+
+  <h2>Configuration Delay</h2>
+
+  <p>A problem arises when both the blink phase timer, and shaft encoder timer are used together to synchronize the wheel.  Since we know the RPM of the wheel drifts slightly there is a possibility of missing the start signal from the shaft encoder.</p>
+
+  <p>This error accumulates and creates a jitter from left to right in an otherwise stationary image.</p>
+
+  <div class="centered_image"><img src="images/too_late.jpg" border="0" alt="late configuration" /></div>
+
+  <p>This was solved by allocating a section of the rotation dedicated to waiting for the signal from the shaft encoder.</p>
+
+  <div class="centered_image"><img src="images/conf_delay.jpg" border="0" alt="configuration delay" /></div>
+
+  <p>During the configuration delay the blink timer is completely <b>turned off</b>.  Giving the shaft encoder enough breathing room to fire its start marker at the top of the rotation.</p>
+
+  
+</div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a class="current" href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

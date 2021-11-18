@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eng" xml:lang="eng">
+<head>
+<title>LED Wheel: Shaft Encoder</title>
+<style type="text/css">@import url(led_wheel.css);</style>
+</head>
+<body>
+
+<div id="container">
+
+<div id="top"></div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a class="current" href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Hamamatsu Shaft Encoder</h1>
+
+  <p>To measure the speed of the wheel arm I used the <a href="http://www.active-robots.co.uk/media/pdf/p5587.pdf">Hamamatsu Photo reflector P5587</a>. This shaft encoder contains a high power infrared LED emitter and a photo IC (receptor).  The LED emits infrared light which bounces off a near by surface, and is received by the <a href="http://sales.hamamatsu.com/en/products/solid-state-division/photo-ic-series/photo-ic.php">photo IC</a>.</p>
+
+  <div class="centered_image"><img src="images/hamamatsu_shaft_encoder.jpg" border="0" alt="hamamatsu shaft encoder" /></div>
+
+  <h2>Reflective Surface</h2>
+  
+  <p>The reflective surface was contructed from normal white paper. The paper is printed half white and half black.  When the infrared light bounces off a white section it is received by the photo IC.  When the infrared light hits the black section it does not reflect enough of the infrared pulse to register with the photo IC.  These transitions from black to white create a <a href="http://en.wikipedia.org/wiki/Pulse_wave">pulse train</a>.</p>
+
+  <div class="centered_image"><img src="images/white_black.jpg" border="0" alt="hamamatsu shaft encoder" /></div>
+
+
+  <h2>Pulse Train</h2>  
+  <p>This pulse train can then be used to calculate the speed at which the motor is spinning and act as a start marker for each rotation. </p>
+  <p>More details on how the shaft encoder calibrates the timing of the wheel can be found in the <a href="timing.html">Timing</a> section of this report.</p>
+  
+
+<div class="centered_image"><img src="images/pulse_train.jpg" border="0" alt="pulse train" /></div>
+
+ <h2>Wiring and Voltage</h2>
+
+ <p>The shaft encoder requires an input and output voltage of 5V.  The AT90USB1287 cannot provide 5V, but will accept 5V on an input capture pin. ( assuming the AT90 has a common ground with the shaft encoder ).</p>
+
+<p>This is the circuit used to hook the AT90 to the shaft encoder outlined in <a href="http://books.google.ca/books?id=KZOJnieBC6cC">Mobile Robots p154</a>.</p>
+
+<div class="centered_image"><img src="images/shaft_circuit.jpg" border="0" alt="shaft encoder mounting board" /></div>
+
+<p>The pin numbers on this diagram correspond to the pins on the mounting board used to secure the shaft encoder to the wheel.</p>
+ 
+<div class="centered_image"><img src="images/shaft_board.jpg" border="0" alt="shaft encoder mounting board" /></div>
+
+
+<h2>Mounted Shaft Encoder</h2>
+
+<p>The following images shows the shaft encoder mounted 4mm above the black and white wheel.</p>
+
+<div class="centered_image"><img src="images/side_view.jpg" border="0" alt="side view" /></div>
+
+<div class="centered_image"><img src="images/side_view_close.jpg" border="0" alt="side view" /></div>
+
+</div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a class="current" href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eng" xml:lang="eng">
+<head>
+<title>LED Wheel: TLC5940NT controller</title>
+<style type="text/css">@import url(led_wheel.css);</style>
+</head>
+<body>
+
+<div id="container">
+
+<div id="top"></div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a class="current" href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+<div id="content">
+  <h1>Texas Instruments TLC5940NT LED Controller</h1>
+
+  <p>The <a href="http://focus.ti.com/docs/prod/folders/print/tlc5940.html">TLC5940NT</a> is a LED controller chip that can power up to 16 LEDs.  In this project we used <b>three</b> TLC5940NTs to drive 16 <a href="parts.html#led">common anode</a> RGB LEDs ( or 48 single color LEDs ).  The TCL5940NT can set each individual LED with 4096 levels of brightness. This controller chip interfaces to the micro-controller via <a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">SPI</a>.</p>
+
+  <h2>Grayscale Mode</h2>
+
+  <p>The TCL5940NT has three modes: Grayscale PWM Mode, Dot Correction Data Input Mode, and EEPROM Programming Mode.  For this project we used Grayscale PWM Mode. Grayscale PWM Mode sets the brightness of the 16 connected LEDs.  To program Grayscale PWM Mode we need to construct a data block.</p>
+  
+  <h2>192-bit Data Block</h2>
+
+  <p>The following data block contains contains all the information needed to program the brightness of all 16 LEDs simultaneously.</p>
+
+  <div class="centered_image"><img src="images/data_block.jpg" alt="192-bit data block" border="0" /></div>
+
+  <p>In the illustration above you can see that the 192-bit block is broken up into <b>16</b> 12-bit blocks.  Each of these 12-bit blocks stores a number between 0 and 4095, representing the PWM power of one LED.  The 16 blocks are ordered from <b>OUT15</b> to <b>OUT0</b>. </p>
+
+  <p>Each block is stored <a href="http://en.wikipedia.org/wiki/Most_significant_bit">MSB</a> first ( <a href="http://en.wikipedia.org/wiki/Big_endian">big endian</a> ).  For example, the decimal value <b>1000</b> would be stored as <b>0x3E8</b> or <b>0011 1110 1000</b>.</p>
+
+  <p>To send <b>1000</b> to all 16 LEDs we would send this data block:</p>
+
+  <pre class="code">0x3E,0x83,0xE8,0x3E,0x83,0xE8,0x3E,0x83,0xE8,0x3E,0x83,0xE8,
+0x3E,0x83,0xE8,0x3E,0x83,0xE8,0x3E,0x83,0xE8,0x3E,0x83,0xE8</pre>
+  <br />
+
+  <h2>Sending the Data Block via SPI</h2>
+
+  <p>Once a data block matches the above format it is ready to be sent via SPI.  First we connect the TLC5940NTs SPI pins: <b>SCLK</b> and <b>MOSI</b>.  SCLK is the SPI clock.  MOSI ( master out slave in ) is the data out for SPI communication.</p>
+
+  <p>Two other non-SPI pins to connect are <b>BLANK</b> and <b>XLAT</b>. BLANK controls the power to all LEDs.  XLAT is a data latch used to save a data block into the TLC5940NTs memory.</p>
+
+  <p>Now we can send the data block by following these steps:</p>
+
+  <ol>
+      <li>Set <b>BLANK</b> HIGH</li>
+      <li>Send entire data block with SPI</li>
+      <li>Set <b>BLANK</b> LOW </li>      
+      <li>Set <b>XLAT</b> HIGH</li>
+      <li>Wait about 2us</li>      
+      <li>Set <b>XLAT</b> LOW</li>            
+  </ol>
+
+  <p>More details about this process can be found in the <a href="http://focus.ti.com/docs/prod/folders/print/tlc5940.html">TLC5940NT data-sheet</a>.  For details on wiring see the <a href="code.html">wiring diagram</a>.</p>
+  
+  <h2>Daisy Chaining</h2>
+
+  <p>Hooking up more than 16 LEDs requires more than one TLC5940NT. These controllers can be easily setup to control 16+ LEDs using cascading SPI connections.</p>
+
+  <p>For the LED Wheel I used three TLC5940NT controllers connected to 16 RGB LEDs ( 48 independent LEDs ).  The following connections are required to create a daisy chain.</p>
+
+  <ul>
+      <li>Connect a common <b>XLAT</b> and <b>BLANK</b> to all 3 chips</li>
+      <li>Connect a common <b>SCLK</b> to all 3 chips</li>
+      <li>Connect <b>MOSI</b> to LED controller <b>one</b>&#39;s <b>SIN</b></li>
+      <li>Connect <b>SOUT</b> of LED controller <b>one</b> to <b>SIN</b> of LED controller <b>two</b></li>
+      <li>Connect <b>SOUT</b> of LED controller <b>two</b> to <b>SIN</b> of LED controller <b>three</b></li>                  
+  </ul>
+
+  <p>This connection scheme is also detailed in the <a href="code.html">schematics</a>.</p>
+
+  <p>Once the controller chips are daisy chained, we can now send data to configure the 48 LEDs. One TLC5940NT requires 192-bits to be transmitted via SPI.  Three TLC5940NTs will require three data blocks or 576-bits.</p>
+
+  <p>These three data blocks can be treated as one large block and transmitted to the first LED controller in the daisy chain.  These three controllers automatically divide up and assign each individual chip a 192-bit chunk of the 576-bits. Then when the XLAT is signaled all 48 LEDs are updated simultaneously.</p>
+  
+</div>
+
+<div class="menu">
+  <ul>
+      <li><a href="index.html">Introduction</a>&nbsp;|</li>
+      <li><a href="parts.html">Parts</a>&nbsp;|</li>
+      <li><a class="current" href="led_controller.html">Led Controller</a>&nbsp;|</li>
+      <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+      <li><a href="timing.html">Timing</a>&nbsp;|</li>
+      <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+      <li><a href="video.html">Video</a>&nbsp;|</li>        
+      <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eng" xml:lang="eng">
+<head>
+<title>LED Wheel: Parts</title>
+<style type="text/css">@import url(led_wheel.css);</style>
+</head>
+<body>
+
+<div id="container">
+
+<div id="top"></div>
+
+<div class="menu">
+<ul>
+    <li><a href="index.html">Introduction</a>&nbsp;|</li>
+    <li><a class="current" href="parts.html">Parts</a>&nbsp;|</li>
+    <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+    <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+    <li><a href="timing.html">Timing</a>&nbsp;|</li>
+    <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+    <li><a href="video.html">Video</a>&nbsp;|</li>        
+    <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+</ul>
+</div>
+
+<div id="content">
+  <h1>Parts</h1>
+
+  <p>These are main components used to construct the LED Wheel.</p>
+
+  <a name="led"></a>
+  <h2>16 RGB Common Anode LEDs</h2>
+
+  <img class="left" src="images/rgb_led.jpg" alt="rgb led" border="0" />
+  <p>For this project I used 16 RGB LEDs from <a href="http://stores.ebay.com/HKJE-Led-Lamp-Center">HKJE LED Lamp Center</a>. Each LED has three cathodes(-) and one common anode(+).  I choose the diffused type of LEDs so that the light would fill up the surface of the LED bulb. For an example of diffused vs normal LEDs see this <a href="http://www.instructables.com/id/how-to-defuse-an-LED/">instructables page</a>.</p>
+
+  <table class="parts">
+     <tr><td><b>Size:</b></td><td>5mm</td></tr>      
+     <tr><td><b>Material:</b></td><td> InGaN</td></tr>
+     <tr><td><b>Emitting Color:</b></td><td> Manual control RGB 4 PIN COMMON CATHODE</td></tr>
+     <tr><td><b>Reverse Voltage:</b></td><td> 5.0V</td></tr>
+     <tr><td><b>RED:</b></td><td> 625-630nm 2.0-2.4v</td></tr>
+     <tr><td><b>GREEN:</b></td><td> 515-520nm 3.6-3.8v</td></tr>
+     <tr><td><b>BLUE:</b></td><td> 465-470nm 3.6-3.8v</td></tr>
+     <tr><td><b>Lens Type:</b></td><td> Diffused type</td></tr>
+     <tr><td><b>Luminous Intensity:</b></td><td> 6,000 mcd max 8,000+ mcd</td></tr>
+     <tr><td><b>DC Forward Current:</b></td><td> 20mA</td></tr>
+     <tr><td><b>Viewing Angle:</b></td><td> 25 degrees</td></tr>
+     <tr><td><b>Lead Soldering Temp:</b></td><td> 260oC for 5 seconds</td></tr>
+  </table>
+
+  <br />
+  <br />
+  
+  <a name="tlc5940nt"></a>  
+  <h2>3 TLC5940NT LED Controllers</h2>
+
+  <img class="left" src="images/tlc5940nt.jpg" alt="tlc5940nt" border="0" />
+
+  <p>To control the 16 RGB LEDs I used <b>three</b> <a href="http://focus.ti.com/docs/prod/folders/print/tlc5940.html">TLC5940NT</a> LED controller chips.  These chips provide 4096 degrees of PWM control ( brightness ) for each individual LED.  One TLC5940NT can control 16 LEDs.</p>
+
+  <p>This component is central to the design of the LED wheel, and detailed completely in the <a href="led_controller.html">LED controller</a> section of this report.</p>
+
+  <br />
+  <br />
+  
+  <a name="shaft_encoder"></a>
+  <h2>Hamamatsu Shaft Encoder</h2>
+
+  <img class="left" src="images/hamamatsu_shaft_encoder.jpg" alt="hamamatsu shaft encoder" border="0" />
+
+  <p>To measure the speed of the wheel arm I used the <a href="http://www.active-robots.co.uk/media/pdf/p5587.pdf">Hamamatsu Photo reflector P5587</a>. This shaft encoder contains a high power infrared LED emitter and a photo IC (receptor).  The LED emits infrared light which bounces off a near by surface, and is received by the <a href="http://sales.hamamatsu.com/en/products/solid-state-division/photo-ic-series/photo-ic.php">photo IC</a>.</p>
+
+  <p>More information about the shaft encoder can be found in the <a href="shaft_encoder.html">Shaft Encoder.</a> section of this report.</p>
+
+  <br />
+  <br />
+  
+  <a name="at90"></a>
+  <h2>Atmel AT90USB1287 Micro-Controller</h2>
+
+  <img class="left" src="images/at90.jpg" alt="AT90USB1287" border="0" />
+
+  <p>The micro-controller used in this project is an all-in-one demonstration board, the AT90USB1287. A full data-sheet and specs are available on the <a href="http://www.atmel.com/dyn/Products/product_card.asp?part_id=3875">Atmel Product Website.</a></p>
+
+  <br />
+  <br />
+
+  <a name="mitsumi"></a>
+  <h2>Mitsumi M36N-2 DC Motor</h2>
+
+  <img class="left" src="images/mitsumi.jpg" alt="mitsumi dc motor" border="0" />
+
+  <p>To turn the wheel arm I used one Mitsumi M36N-2 DC motor.  It provides high torque and is responsive at low voltages.  For a full spec on this motor visit the <a href="http://www.mitsumi.co.jp/Catalog/compo/motorav/m36n2series_e.html">on-line spec</a> from Mitsumi.</p>
+
+  <br />
+  <br />
+
+  <a name="3.3"></a>
+  <h2>LM1086 3.3V Regulator</h2>
+
+  <img class="left" src="images/lm1086.jpg" alt="LM1086" border="0" />  
+
+  <p>To provide 3.3 volts to the LED controller chips.  I used this National Semiconductor voltage regulator.  It provides 1.5ma of current, more than enough to power all 16 LEDs at full brightness.  The data-sheet for the LM1086 can be found <a href="http://www.national.com/mpf/LM/LM1086.html">here</a>.</p>
+
+  <br />
+  <br />
+
+  <a name="ADJ"></a>
+  <h2>LM1086 Adjustable Regulator</h2>
+
+  <img class="left" src="images/adj_regulator.jpg" alt="LM1086" border="0" />  
+
+  <p>To provide power ( 3.0 - 6.0 volts) to the DC motor.  I used this National Semiconductor voltage regulator.  It provides 1.5ma of current the same as the 3.3 volt regulator used to power the LEDs .  The data-sheet for the LM1086 can also be found <a href="http://www.national.com/mpf/LM/LM1086.html">here</a>.</p>
+
+  <br />
+  <br />
+  
+  <a name="5.0"></a>
+  <h2>LM7805C 5.0V Regulator</h2>
+
+  <img class="left" src="images/lm1086.jpg" alt="LM7805C" border="0" />  
+
+  <p>To provide 5.0 volts to the shaft encoder and the AT90USB1287 I used this National Semiconductor voltage regulator.  The data-sheet for the LM7805C can be found <a href="http://www.national.com/opf/LM/LM7805C.html">here</a>.</p>
+
+  <br />
+  <br />
+
+  <h2>Wheel Arm</h2>
+
+  <p>The following picture is of the fully assembled wheel arm.</p>
+  
+  <div class="centered_image"><img src="images/leds_and_controller.jpg" border="0" alt="leds and controller" /></div>
+
+  <p>The schematics for this circuit are shown the <a href="code.html">Schematics and Code</a> section of this report.</p>
+
+
+  <h2>Dome and Base</h2>
+
+  <p>To encase the wheel I found this tinted plastic dome ( about 22 inches in diameter ).</p>
+
+  <div class="centered_image"><img src="images/just_dome.jpg" border="0" alt="plastic dome" /></div>
+
+  <p>The base ( also 22inches ) was cut from normal inch press-board using a miter saw.</p>
+
+  <div class="centered_image"><img src="images/no_dome.jpg" border="0" alt="no dome" /></div>
+
+  <p>The DC motor was controlled from a 1K potentiometer and a power switch.</p>
+
+  <div class="centered_image"><img src="images/switch.jpg" border="0" alt="switch" /></div>
+  
+  <p>Three large metal washers were used to prop up the dome from the base.</p>
+
+  <div class="centered_image"><img src="images/washer.jpg" border="0" alt="switch" /></div>
+
+  <h2>Batteries</h2>
+
+  <p>To power the DC motor I used a 9.0 volt battery pack called &quot;dynamite stick&quot;.</p>
+
+  <div class="centered_image"><img src="images/dynamite_stick.jpg" border="0" alt="switch" /></div>
+
+  <p>To provide ~6.0V to both the 3.3V and 5.0V regulators I used four ultralast rechargeable 3.3V batteries.</p>
+
+  <div class="centered_image"><img src="images/ultralast.jpg" border="0" alt="switch" /></div>
+  
+</div>
+
+<div class="menu">
+    <ul>
+        <li><a href="index.html">Introduction</a>&nbsp;|</li>
+        <li><a class="current" href="parts.html">Parts</a>&nbsp;|</li>
+        <li><a href="led_controller.html">Led Controller</a>&nbsp;|</li>
+        <li><a href="shaft_encoder.html">Shaft Encoder</a>&nbsp;|</li>
+        <li><a href="timing.html">Timing</a>&nbsp;|</li>
+        <li><a href="pictures.html">Pictures</a>&nbsp;|</li>
+        <li><a href="video.html">Video</a>&nbsp;|</li>        
+        <li><a href="code.html">Schematics and Code</a>&nbsp;</li>
+    </ul>
+</div>
+
+</div>
+</body>
+</html>
