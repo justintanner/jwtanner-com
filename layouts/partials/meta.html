@@ -1,9 +1,18 @@
+{{- if (eq .Section "posts") -}}
 <title itemprop="name">{{ .Title }} | {{ .Site.Title }}</title>
 <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+{{- else -}}
+<title itemprop="name">{{ .Site.Params.sitename }}</title>
+<meta property="og:title" content="{{ .Site.Params.sitename }}" />
+<meta name="twitter:title" content="{{ .Site.Params.sitename }}" />
+<meta itemprop="name" content="{{ .Site.Params.sitename }}" />
+<meta name="application-name" content="{{ .Site.Params.sitename }}" />
+<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+{{- end -}}
 
 <meta name="description" content="{{ .Params.description }}" />
 <meta itemprop="description" content="{{ .Params.description }}" />
@@ -18,30 +27,30 @@
 
 <meta property="og:locale" content="{{ .Language.Lang }}">
 <meta name="language" content="{{ .Language.LanguageName }}">
-{{ range .AllTranslations }}
+{{- range .AllTranslations -}}
   <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
-{{ end }}
+{{- end -}}
 
-{{ with .Params.image }} 
+{{- with .Params.image -}}
   <meta itemprop="image" content="{{ . | absURL }}" />
   <meta property="og:image" content="{{ . | absURL }}" /> 
   <meta name="twitter:image" content="{{ . | absURL }}" />
   <meta name="twitter:image:src" content="{{ . | absURL }}" /> 
-{{ else }}
+{{- else -}}
   <meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
   <meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
   <meta name="twitter:image" content="{{ .Site.Params.ogimage | absURL }}" />
   <meta name="twitter:image:src" content="{{ .Site.Params.ogimage | absURL }}" /> 
-{{ end }}
+{{- end -}}
 
 <meta property="og:updated_time" content={{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }} />
 
 <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ .Site.BaseURL }}sitemap.xml" /> 
 
-{{ with .OutputFormats.Get "RSS" }}
+{{- with .OutputFormats.Get "RSS" -}}
   <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
   <link href="{{ .Permalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
-{{ end }}
+{{- end -}}
 
 <meta name="robots" content="index,follow" /> 
 <meta name="googlebot" content="index,follow" />

@@ -8,8 +8,8 @@ pygmentsUseClasses = true
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  author = "Justin Tanner"
-  github = "https://github.com/justintanner"
-  og_image = "/images/og.png"
-  sitename = "Justin Tanners Profile and Blog"
+  author = 'Justin Tanner'
+  github = 'https://github.com/justintanner'
+  og_image = '/og.png'
+  sitename = 'Justin Tanner: Computer Programmer'
 
