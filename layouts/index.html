@@ -40,13 +40,13 @@
     <div class="card mb-3 mx-auto" style="max-width: 760px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <a href="{{ .Permalink }}">
+          <a href="{{ .RelPermalink }}">
             <img src="{{ $resizedCoverHalf.RelPermalink }}" srcset="{{ $resizedCover.RelPermalink }} 2x" class="img-fluid rounded-start" alt="fixed">
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title"><a href="{{ .Permalink }}" class="text-dark">{{ .Title }}</a></h5>
+            <h5 class="card-title"><a href="{{ .RelPermalink }}" class="text-dark">{{ .Title }}</a></h5>
             <p class="card-text">{{ .Description }}</p>
           </div>
         </div>
