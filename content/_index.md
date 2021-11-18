@@ -1,3 +1,4 @@
-+++
-title="Justin Tanner: Computer Programmer"
-+++
+---
+title: "Profile"
+imgage: "profile-pic.png"
+---

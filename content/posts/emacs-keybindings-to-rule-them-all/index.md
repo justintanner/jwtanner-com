@@ -2,7 +2,8 @@
 title: Emacs keybindings to rule them all
 description: How I used Hammerspoon and AutoHotkey to script a set universal keybindings.
 author: Justin Tanner
-date: 2019-04-06T00:00:00Z
+date: 2019-04-06
+image: "cover.jpg"
 ---
 
 When Microsoft released [Ubuntu for Windows 10][1] I took the opportunity to try web development on Windows after 8 years on a Mac. I was pleasantly surprised with Ubuntu on Windows 10. Having Ubuntu in your terminal is handy because it more closely resembles the servers I deploy my code to. But there was one frustrating aspect of switching back to Windows, keyboard shortcuts.

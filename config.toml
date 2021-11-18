@@ -1,7 +1,15 @@
 baseURL = 'https://jwtanner.com/'
 languageCode = 'en-us'
-title = 'Justin Tanner: Computer Programmer'
+title = 'Justin Tanner'
 pygmentsUseClassic = false
 pygmentsCodeFences = true
 pygmentsCodeFencesGuessSyntax = true
 pygmentsUseClasses = true
+disableKinds = ['taxonomy', 'term']
+
+[params]
+  author = "Justin Tanner"
+  github = "https://github.com/justintanner"
+  og_image = "/images/og.png"
+  sitename = "Justin Tanners Profile and Blog"
+

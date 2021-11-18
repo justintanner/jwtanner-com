@@ -2,7 +2,8 @@
 title: Ten years of TuckDB
 description: Thoughts on the last 10 years of TuckDB and our future plans.
 author: Justin Tanner
-date: 2020-05-05T00:00:00Z
+date: 2020-05-05
+image: "cover.jpg"
 ---
 
 In 2010 we launched a website called [TuckDB][1], a database of antique postcards published by Raphael Tuck & Sons. Since then we've uploaded hundreds of thousands of images, expanded our database of postcards and launched a new website [TuckDB Ephemera][2]. We thought that now was a good time to reflect on the last 10 years and discuss our future plans.
