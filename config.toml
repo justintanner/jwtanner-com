@@ -1,4 +1,4 @@
-baseURL = 'http://jwtanner.com/'
+baseURL = 'https://jwtanner.com/'
 languageCode = 'en-us'
 title = 'Justin Tanner'
 pygmentsUseClassic = false
