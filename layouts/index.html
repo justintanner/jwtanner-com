@@ -6,7 +6,7 @@
         {{- $face := .Resources.GetMatch "profile-pic.png" -}}
         {{- $halfWidth := math.Floor (div $face.Width 2) -}}
         {{- $half := $face.Resize (printf "%sx" (string $halfWidth)) -}}        
-        <img class="img-fluid" src="{{ $half.RelPermalink }}" srcset="{{ $face.RelPermalink }} 2x" alt="A picture of my face.">        
+        <img class="img-fluid" src="{{ $half.RelPermalink }}" srcset="{{ $face.RelPermalink }} 2x" alt="A picture of my face." width="{{ $half.Width }}" height="{{ $half.Height }}">        
       </div>
       
       <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-4 mt-sm-0">
@@ -41,7 +41,7 @@
       <div class="row g-0">
         <div class="col-md-4">
           <a href="{{ .RelPermalink }}">
-            <img src="{{ $resizedCoverHalf.RelPermalink }}" srcset="{{ $resizedCover.RelPermalink }} 2x" class="img-fluid rounded-start" alt="fixed">
+            <img src="{{ $resizedCoverHalf.RelPermalink }}" srcset="{{ $resizedCover.RelPermalink }} 2x" class="img-fluid rounded-start" alt="fixed" width="{{ $resizedCoverHalf.Width }}" height="{{ $resizedCoverHalf.Height }}">
           </a>
         </div>
         <div class="col-md-8">
