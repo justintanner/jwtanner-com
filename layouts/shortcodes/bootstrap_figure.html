@@ -3,7 +3,7 @@
 {{- $half := $original.Resize (printf "%sx" (string $halfWidth)) -}}
 <div class="d-flex justify-content-center">
   <figure class="figure my-4 text-center">
-    <img class="img-fluid {{ .Get "class" }}" src="{{ $half.RelPermalink }}" srcset="{{ $original.RelPermalink }} 2x" alt="{{ .Get "alt" }}">      
+    <img class="img-fluid {{ .Get "class" }}" src="{{ $half.RelPermalink }}" srcset="{{ $original.RelPermalink }} 2x" alt="{{ .Get "alt" }}" width="{{ $half.Width  }}" height="{{ $half.Height }}">      
     <figcaption class="figure-caption text-center">{{ .Inner }}</figcaption>
   </figure>
 </div>
