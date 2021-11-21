@@ -6,7 +6,7 @@
       {{- $halfWidth := math.Floor (div $cover.Width 2) -}}
       {{- $halfHeight := math.Floor (div $cover.Height 2) -}}      
       {{- $half := $cover.Resize (printf "%sx%s" (string $halfWidth) (string $halfHeight)) -}}              
-      <img class="card-img-top"  src="{{ $half.RelPermalink }}" srcset="{{ $cover.RelPermalink }} 2x" alt="Cover Image" width="{{ $halfWidth }}" height="{{ $halfHeight }}">              
+      <img class="card-img-top img-fluid"  src="{{ $half.RelPermalink }}" srcset="{{ $cover.RelPermalink }} 2x" alt="Cover Image" width="{{ $halfWidth }}" height="{{ $halfHeight }}">              
       <div class="card-body p-4 p-lg-5">
         <h1 class="card-title mb-0 pb-0">{{ .Title }}</h1>
         <p class="text-muted pt-0 pb-2 ms-1"><small>{{ .Date.Format "Jan 1, 2006" }} &sdot; <a class="text-muted" href="{{ .Site.GetPage.RelPermalink }}">Justin Tanner</a></small></p>          
