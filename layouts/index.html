@@ -1,5 +1,5 @@
 {{- define "main" -}}
-<div class="container-fluid light-grey">
+<div class="container-fluid gray-bg">
   <div class="container">
     <div class="row align-items-sm-center py-5">
       <div class="col-sm-6 col-md-5 col-lg-4 order-sm-2 text-center">
@@ -35,8 +35,8 @@
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
-    {{- $resizedCover := $cover.Fill "1520x840" -}}
-    {{- $resizedCoverHalf := $cover.Fill "760x420" -}}    
+    {{- $resizedCover := $cover.Fill "1520x840 Center" -}}
+    {{- $resizedCoverHalf := $cover.Fill "760x420 Center" -}}    
     <div class="card mb-3 mx-auto" style="max-width: 760px;">
       <div class="row g-0">
         <div class="col-md-4">

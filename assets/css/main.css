@@ -1,14 +1,6 @@
 /* Fix for bs5 icon vertical align bug */
 svg { vertical-align: -0.125em; }
 
-.svg-hover-fix {
-  fill: black;
-}
-
-.svg-hover-fix:hover {
-  fill: white;    
-}
-
 pre {
   padding: 16px;
   border-radius: 4px;
@@ -65,8 +57,14 @@ pre {
   font-family: 'Montserrat', sans-serif;
 }
 
-.light-grey {
+.gray-bg {
   background-color: #f6f6f6
+}
+
+@media (min-width: 992px) {
+  .gray-lg-bg {
+    background-color: #f6f6f6
+  }
 }
 
 #intro h1 {
@@ -202,5 +200,15 @@ pre {
   border: 2px solid #E8E8E8;
   color: #292929;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;    
+  -webkit-font-smoothing: antialiased;
+}
+
+.post .card {
+  border: none;
+}
+
+@media (min-width: 992px) {
+  .post .card {
+    border: 2px solid #E8E8E8;
+  }  
 }
