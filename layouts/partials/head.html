@@ -1,16 +1,12 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
 {{ partial "meta.html" . }}
+
+{{- $fonts := resources.Get "css/fonts.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}" preload="yes" />
 
 {{- $bootstrap := resources.Get "css/bootstrap.min.css" -}}
 {{- $main := resources.Get "css/main.css" -}}
 {{- $pygments := resources.Get "css/pygments-manni.css" -}}
-{{- $fonts := resources.Get "css/fonts.css" -}}
-
 {{- $bundle := slice $bootstrap $fonts $main $pygments | resources.Concat "bundle.css" | minify | fingerprint -}}
-<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" preload="yes" />
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"/>
 
 
