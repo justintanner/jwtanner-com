@@ -3,10 +3,10 @@
   <div class="container">
     <div class="row align-items-sm-center py-5">
       <div class="col-sm-6 col-md-5 col-lg-4 order-sm-2 text-center">
-        {{- $face := .Resources.GetMatch "profile-pic.png" -}}
-        {{- $halfWidth := math.Floor (div $face.Width 2) -}}
-        {{- $half := $face.Resize (printf "%sx" (string $halfWidth)) -}}        
-        <img class="img-fluid" src="{{ $half.RelPermalink }}" srcset="{{ $face.RelPermalink }} 2x" alt="A picture of my face." width="{{ $half.Width }}" height="{{ $half.Height }}">        
+        {{- $face2x := .Resources.GetMatch "profile-pic.png" -}}
+        {{- $halfWidth := math.Floor (div $face2x.Width 2) -}}
+        {{- $face := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
+        <img class="img-fluid" src="{{ $face.RelPermalink }}" srcset="{{ $face2x.RelPermalink }} 2x" alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">        
       </div>
       
       <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-4 mt-sm-0">
@@ -30,13 +30,18 @@
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
-    {{- $resizedCover := $cover.Fill "1520x840 Center" -}}
-    {{- $resizedCoverHalf := $cover.Fill "760x420 Center" -}}    
-    <div class="card mb-3 mx-auto" style="max-width: 760px;">
+
+    <div class="card mb-3 mx-auto" style="max-width: 700px;">
       <div class="row g-0">
         <div class="col-md-4">
           <a href="{{ .RelPermalink }}">
-            <img src="{{ $resizedCoverHalf.RelPermalink }}" srcset="{{ $resizedCover.RelPermalink }} 2x" class="img-fluid rounded-start" alt="fixed" width="{{ $resizedCoverHalf.Width }}" height="{{ $resizedCoverHalf.Height }}">
+            {{- $coverThumb2x := $cover.Fill "464x296 Center" -}}
+            {{- $coverThumb := $cover.Fill "232x148 Center" -}}
+            <img class="img-fluid rounded-start d-none d-md-block" src="{{ $coverThumb.RelPermalink }}" srcset="{{ $coverThumb2x.RelPermalink }} 2x" class="" alt="{{ .Title }}" width="{{ $coverThumb.Width }}" height="{{ $coverThumb.Height }}">
+            
+            {{- $coverMobile2x := $cover.Fill "1536x496 Center" -}}
+            {{- $coverMobile := $cover.Fill "768x248 Center" -}}              
+            <img class="img-fluid rounded-start d-block d-md-none" src="{{ $coverMobile.RelPermalink }}" srcset="{{ $coverMobile2x.RelPermalink }} 2x" class="" alt="{{ .Title }}" width="{{ $coverMobile.Width }}" height="{{ $coverMobile.Height }}">
           </a>
         </div>
         <div class="col-md-8">
