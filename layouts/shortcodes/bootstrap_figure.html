@@ -1,9 +1,21 @@
 {{- $original := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) -}}
-{{- $halfWidth := (math.Floor (div $original.Width 2)) -}}
-{{- $half := $original.Resize (printf "%sx" (string $halfWidth)) -}}
+{{- $widths := seq $original.Width -100 200 }}
+{{- $maxWidth := math.Floor (div $original.Width 2) -}}
+
+{{ $data := newScratch }}
+
+{{- range $width := $widths }}
+  {{- $image := $original.Resize (printf "%sx" (string $width)) -}}
+  {{- $data.SetInMap "images" (string $width) $image -}}
+{{- end }}
+
 <div class="d-flex justify-content-center">
   <figure class="figure my-4 text-center">
-    <img class="img-fluid {{ .Get "class" }}" src="{{ $half.RelPermalink }}" srcset="{{ $original.RelPermalink }} 2x" alt="{{ .Get "alt" }}" width="{{ $half.Width  }}" height="{{ $half.Height }}">      
+    <img class="img-fluid {{ .Get "class" }}"
+         sizes="(min-width: {{ $maxWidth }}px) {{ $maxWidth }}px, 100vw"
+         srcset="{{- range $width, $image := $data.Get "images" -}}{{- $image.RelPermalink }} {{ $width }}w,{{- end }}"
+         src="{{ $original.RelPermalink }}"         
+         alt="{{ .Get "alt" }}">      
     <figcaption class="figure-caption text-center">{{ .Inner }}</figcaption>
   </figure>
 </div>
