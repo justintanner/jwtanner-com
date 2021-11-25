@@ -28,6 +28,16 @@ pre {
   }
 }
 
+#face {
+  border-radius: 0.6rem !important;
+  transform: rotate(10deg);
+}
+
+#face-shadow {
+  border-radius: 0.6rem !important;    
+  background-color:#e7e8e7;  
+}
+
 .post {
   width: 100%;
 }

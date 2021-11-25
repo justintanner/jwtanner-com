@@ -3,10 +3,12 @@
   <div class="container">
     <div class="row align-items-sm-center py-5">
       <div class="col-sm-6 col-md-5 col-lg-4 order-sm-2 text-center">
-        {{- $face2x := .Resources.GetMatch "profile-pic.png" -}}
+        {{- $face2x := .Resources.GetMatch "face10deg.jpg" -}}
         {{- $halfWidth := math.Floor (div $face2x.Width 2) -}}
         {{- $face := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
-        <img class="img-fluid" src="{{ $face.RelPermalink }}" srcset="{{ $face2x.RelPermalink }} 2x" alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">        
+        <div id="face-shadow" class="d-inline-block">
+          <img class="img-fluid" id="face" src="{{ $face.RelPermalink }}" srcset="{{ $face2x.RelPermalink }} 2x" alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">
+        </div>
       </div>
       
       <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-4 mt-sm-0">
@@ -26,7 +28,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="container">
+  <div class="container px-0 p-sm-5 p-md-0">
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
@@ -35,13 +37,19 @@
       <div class="row g-0">
         <div class="col-md-4">
           <a href="{{ .RelPermalink }}">
-            {{- $coverThumb2x := $cover.Fill "464x296 Center" -}}
-            {{- $coverThumb := $cover.Fill "232x148 Center" -}}
-            <img class="img-fluid rounded-start d-none d-md-block" src="{{ $coverThumb.RelPermalink }}" srcset="{{ $coverThumb2x.RelPermalink }} 2x" class="" alt="{{ .Title }}" width="{{ $coverThumb.Width }}" height="{{ $coverThumb.Height }}">
-            
-            {{- $coverMobile2x := $cover.Fill "1536x496 Center" -}}
-            {{- $coverMobile := $cover.Fill "768x248 Center" -}}              
-            <img class="img-fluid rounded-start d-block d-md-none" src="{{ $coverMobile.RelPermalink }}" srcset="{{ $coverMobile2x.RelPermalink }} 2x" class="" alt="{{ .Title }}" width="{{ $coverMobile.Width }}" height="{{ $coverMobile.Height }}">
+            {{- $cover232 := $cover.Fill "232x148 Center" -}}
+            {{- $cover464 := $cover.Fill "464x296 Center" -}}
+            {{- $cover928 := $cover.Fill "928x592 Center" -}}                        
+            {{- $cover1856 := $cover.Fill "1856x1184 Center" -}}                        
+
+            <img class="img-fluid rounded-start"
+                 sizes="(min-width: 768px) 232px, 100vw"
+                 srcset="{{ $cover232.RelPermalink }} 232w,
+                         {{ $cover464.RelPermalink }} 464w,
+                         {{ $cover928.RelPermalink }} 928w,
+                         {{ $cover1856.RelPermalink }} 1856w"
+                 src="{{ $cover232.RelPermalink }}"                 
+                 alt="{{ .Title }}">
           </a>
         </div>
         <div class="col-md-8">
