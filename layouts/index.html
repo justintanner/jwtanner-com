@@ -2,15 +2,14 @@
 <div class="container-fluid gray-bg">
   <div class="container">
     <div class="row align-items-sm-center py-5">
-      <div class="col-sm-6 col-md-5 col-lg-4 order-sm-2 text-center">
+      <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-sm-2 text-center">
         {{- $face2x := .Resources.GetMatch "face10deg.jpg" -}}
         {{- $halfWidth := math.Floor (div $face2x.Width 2) -}}
         {{- $face := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
         <div id="face-shadow" class="d-inline-block">
-          <img class="img-fluid"
-               id="face"
+          <img id="face"
                sizes="(max-width: 576px) {{ $face.Width }}px,
-                      (max-width: 768px) {{ (sub $face.Width 64) }}px, 
+                      (max-width: 768px) {{ (sub $face.Width 48) }}px, 
                       (max-width: 992px) {{ (sub $face.Width 32) }}px, 
                       (max-width: 1200px) {{ (sub $face.Width 16) }}px, 
                       (min-width: 1201px) {{ $face.Width }}px, 
@@ -22,11 +21,11 @@
         </div>
       </div>
       
-      <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-5 mt-md-0">
-        <div class="text-center text-sm-start" id="intro">
+      <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 col-xl-4 offset-xl-2 col-xxl-3 offset-xxl-3 order-sm-1 mt-5 mt-sm-0">
+        <div class="text-center text-sm-start">
           <p class="text-uppercase fw-light mb-0">Hi I'm</p>
           <div class="d-inline-block">
-            <p class="text-uppercase fw-normal fs-1 lh-2 mb-0" style="position: relative">Justin Tanner</p>
+            <p class="text-uppercase fw-normal fs-1 lh-2 mb-0">Justin Tanner</p>
             <div class="d-flex justify-content-between fw-light fs-6 lh-3 mb-4">
               <span>C</span>
               <span>O</span>
