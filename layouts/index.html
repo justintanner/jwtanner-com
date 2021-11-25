@@ -7,7 +7,11 @@
         {{- $halfWidth := math.Floor (div $face2x.Width 2) -}}
         {{- $face := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
         <div id="face-shadow" class="d-inline-block">
-          <img class="img-fluid" id="face" src="{{ $face.RelPermalink }}" srcset="{{ $face2x.RelPermalink }} 2x" alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">
+          <img class="img-fluid"
+               id="face"
+               src="{{ $face.RelPermalink }}"
+               srcset="{{ $face2x.RelPermalink }} 2x"
+               alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">
         </div>
       </div>
       
@@ -16,7 +20,7 @@
           <h3 class="text-uppercase">Hi I'm</h3>
           <h1 class="text-uppercase">Justin Tanner</h1>
           <h2 class="text-uppercase mb-4">Computer Programmer</h2>
-          <a href="mailto:hey@jwtanner.com" class="btn btn-dark font-montserrat">Email me &nbsp;{{ partial "svgs/paper-plane.html" }}</a>
+          <a href="mailto:hey@jwtanner.com" class="btn btn-dark">Email me &nbsp;{{ partial "svgs/paper-plane.html" }}</a>
         </div>
       </div>
     </div>
@@ -28,7 +32,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="container px-0 p-sm-5 p-md-0">
+  <div class="container px-0 px-sm-5 px-md-0">
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
@@ -39,15 +43,15 @@
           <a href="{{ .RelPermalink }}">
             {{- $cover232 := $cover.Fill "232x148 Center" -}}
             {{- $cover464 := $cover.Fill "464x296 Center" -}}
-            {{- $cover928 := $cover.Fill "928x592 Center" -}}                        
-            {{- $cover1856 := $cover.Fill "1856x1184 Center" -}}                        
+            {{- $cover508 := $cover.Fill "508x326 Center" -}}                        
+            {{- $cover1016 := $cover.Fill "1016x652 Center" -}}
 
             <img class="img-fluid rounded-start"
                  sizes="(min-width: 768px) 232px, 100vw"
                  srcset="{{ $cover232.RelPermalink }} 232w,
                          {{ $cover464.RelPermalink }} 464w,
-                         {{ $cover928.RelPermalink }} 928w,
-                         {{ $cover1856.RelPermalink }} 1856w"
+                         {{ $cover508.RelPermalink }} 508w,
+                         {{ $cover1016.RelPermalink }} 1016w"
                  src="{{ $cover232.RelPermalink }}"                 
                  alt="{{ .Title }}">
           </a>
