@@ -14,10 +14,6 @@ pre {
   font-family: "Charter", Georgia, Cambria, "Times New Roman", Times, serif;  
 }
 
-.font-montserrat {
-  font-family: 'Montserrat', sans-serif;
-}
-
 .gray-bg {
   background-color: #f6f6f6
 }
@@ -26,6 +22,10 @@ pre {
   .gray-lg-bg {
     background-color: #f6f6f6
   }
+}
+
+.text-decoration-onhover:hover {
+  text-decoration: underline !important;
 }
 
 #face {
@@ -46,147 +46,6 @@ pre {
   .post {
     width: 992px;
   }
-}
-
-.text-decoration-onhover:hover {
-  text-decoration: underline !important;
-}
-
-#intro h1, #intro h2, #intro h3 {
-  font-family: 'Montserrat', sans-serif;
-}
-
-#intro h1 {
-  font-weight: 900;
-  font-size: 1.8rem;
-}
-
-@media (min-width: 576px) {
-  #intro h1 {
-    font-size: 1.8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #intro h1 {
-    font-size: 2.0rem;
-  }
-}
-
-@media (min-width: 992px) {
-  #intro h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  #intro h1 {
-    font-size: 2.5rem;
-  }
-}
-
-#intro h2 {
-  letter-spacing: 0.1rem;
-  font-size: 0.9rem;
-}
-
-@media (min-width: 576px) {
-  #intro h2 {
-    letter-spacing: 0.14rem;
-    font-size: 0.86rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #intro h2 {
-    letter-spacing: 0.20rem;
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 992px) {
-  #intro h2 {
-    letter-spacing: 0.21rem;
-    font-size: 1.0rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  #intro h2 {
-    letter-spacing: 0.27rem;
-    font-size: 1.1rem;
-  }
-}
-
-#intro h3 {
-  font-size: 0.8rem;
-  font-weight: 700
-}
-
-@media (min-width: 576px) {
-  #intro h3 {
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  #intro h3 {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 992px) {
-  #intro h3 {
-    font-size: 1.0rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  #intro h3 {
-    font-size: 1.1rem;
-  }
-}
-
-#profile-pic {
-  max-width: 75%;
-  width: 75%;
-  height: auto;
-}
-
-@media (min-width: 576px) {
-  #profile-pic {
-    width: 240px;
-    height: 240px;
-    max-width: 240px;
-  }
-}
-
-@media (min-width: 768px) {
-  #profile-pic {
-    width: 270px;
-    height: 270px;
-    max-width: 270px;
-  }
-}
-
-@media (min-width: 992px) {
-  #profile-pic {
-    width: 288px;
-    height: 288px;
-    max-width: 288px;
-  }
-}
-
-@media (min-width: 1200px) {
-  #profile-pic {
-    width: 350px;
-    height: 350px;
-    max-width: 350px;
-  }
-}
-
-.h5 {
-  font-size: 16px;
 }
 
 .card {

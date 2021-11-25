@@ -1,12 +1,14 @@
 {{ partial "meta.html" . }}
 
-{{- $fonts := resources.Get "css/fonts.css" | minify | fingerprint -}}
-<link rel="stylesheet" href="{{ $fonts.RelPermalink }}" integrity="{{ $fonts.Data.Integrity }}" preload="yes" />
+{{- if (eq .Section "posts") -}}
+{{- $charter := resources.Get "css/charter.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $charter.RelPermalink }}" integrity="{{ $charter.Data.Integrity }}" preload="yes" />
+{{- end -}}
 
 {{- $bootstrap := resources.Get "css/bootstrap.min.css" -}}
 {{- $main := resources.Get "css/main.css" -}}
 {{- $pygments := resources.Get "css/pygments-manni.css" -}}
-{{- $bundle := slice $bootstrap $fonts $main $pygments | resources.Concat "bundle.css" | minify | fingerprint -}}
+{{- $bundle := slice $bootstrap $main $pygments | resources.Concat "bundle.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}"/>
 
 
