@@ -9,13 +9,20 @@
         <div id="face-shadow" class="d-inline-block">
           <img class="img-fluid"
                id="face"
-               src="{{ $face.RelPermalink }}"
-               srcset="{{ $face2x.RelPermalink }} 2x"
-               alt="A picture of my face." width="{{ $face.Width }}" height="{{ $face.Height }}">
+               sizes="(max-width: 576px) {{ $face.Width }}px,
+                      (max-width: 768px) {{ (sub $face.Width 64) }}px, 
+                      (max-width: 992px) {{ (sub $face.Width 32) }}px, 
+                      (max-width: 1200px) {{ (sub $face.Width 16) }}px, 
+                      (min-width: 1201px) {{ $face.Width }}px, 
+                      {{ $face.Width }}px"
+               srcset="{{ $face.RelPermalink }} {{ $face.Width}}w,
+                       {{ $face2x.RelPermalink }} {{ $face2x.Width}}w"
+               src="{{ $face.RelPermalink }}"               
+               alt="A picture of my face">
         </div>
       </div>
       
-      <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-4 mt-sm-0">
+      <div class="col-sm-6 col-md-5 offset-md-1 col-lg-4 offset-lg-2 order-sm-1 mt-5 mt-md-0">
         <div class="text-center text-sm-start" id="intro">
           <p class="text-uppercase fw-light mb-0">Hi I'm</p>
           <div class="d-inline-block">
