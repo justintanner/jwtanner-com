@@ -28,12 +28,12 @@ pre {
   text-decoration: underline !important;
 }
 
-#face {
+#profile {
   border-radius: 0.6rem !important;
   transform: rotate(10deg);
 }
 
-#face-shadow {
+#profile-shadow {
   border-radius: 0.6rem !important;    
   background-color:#e7e8e7;  
 }

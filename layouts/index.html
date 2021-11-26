@@ -3,20 +3,20 @@
   <div class="container">
     <div class="row align-items-sm-center py-5">
       <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-sm-2 text-center">
-        {{- $face2x := .Resources.GetMatch "face10deg.jpg" -}}
-        {{- $halfWidth := math.Floor (div $face2x.Width 2) -}}
-        {{- $face := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
-        <div id="face-shadow" class="d-inline-block">
-          <img id="face"
-               sizes="(max-width: 576px) {{ $face.Width }}px,
-                      (max-width: 768px) {{ (sub $face.Width 48) }}px, 
-                      (max-width: 992px) {{ (sub $face.Width 32) }}px, 
-                      (max-width: 1200px) {{ (sub $face.Width 16) }}px, 
-                      (min-width: 1201px) {{ $face.Width }}px, 
-                      {{ $face.Width }}px"
-               srcset="{{ $face.RelPermalink }} {{ $face.Width}}w,
-                       {{ $face2x.RelPermalink }} {{ $face2x.Width}}w"
-               src="{{ $face.RelPermalink }}"               
+        {{- $profile2x := .Resources.GetMatch "profile.jpg" -}}
+        {{- $halfWidth := math.Floor (div $profile.Width 2) -}}
+        {{- $profile := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
+        <div id="profile-shadow" class="d-inline-block">
+          <img id="profile"
+               sizes="(max-width: 576px) {{ $profile.Width }}px,
+                      (max-width: 768px) {{ (sub $profile.Width 48) }}px, 
+                      (max-width: 992px) {{ (sub $profile.Width 32) }}px, 
+                      (max-width: 1200px) {{ (sub $profile.Width 16) }}px, 
+                      (min-width: 1201px) {{ $profile.Width }}px, 
+                      {{ $profile.Width }}px"
+               srcset="{{ $profile.RelPermalink }} {{ $profile.Width}}w,
+                       {{ $profile2x.RelPermalink }} {{ $profile2x.Width}}w"
+               src="{{ $profile.RelPermalink }}"               
                alt="A picture of my face">
         </div>
       </div>

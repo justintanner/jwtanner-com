@@ -1,4 +1,4 @@
 ---
 title: "Profile"
-imgage: "profile-pic.png"
+image: "profile.jpg"
 ---
