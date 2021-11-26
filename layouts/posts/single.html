@@ -6,7 +6,7 @@
       {{- $halfWidth := math.Floor (div $cover.Width 2) -}}
       {{- $halfHeight := math.Floor (div $cover.Height 2) -}}      
       {{- $half := $cover.Resize (printf "%sx%s" (string $halfWidth) (string $halfHeight)) -}}              
-      <img class="card-image-top img-fluid d-none d-lg-block" src="{{ $half.RelPermalink }}" srcset="{{ $cover.RelPermalink }} 2x" alt="Cover Image" width="{{ $halfWidth }}" height="{{ $halfHeight }}">
+      <img class="card-img-top img-fluid d-none d-lg-block" src="{{ $half.RelPermalink }}" srcset="{{ $cover.RelPermalink }} 2x" alt="Cover Image" width="{{ $halfWidth }}" height="{{ $halfHeight }}">
 
       {{- $cover1984 := $cover.Fill "1984x1080 Center" -}}
       {{- $cover992 := $cover.Fill "992x540 Center" -}}
