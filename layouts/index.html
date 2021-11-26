@@ -4,8 +4,8 @@
     <div class="row align-items-sm-center py-5">
       <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-sm-2 text-center">
         {{- $profile2x := .Resources.GetMatch "profile.jpg" -}}
-        {{- $halfWidth := math.Floor (div $profile.Width 2) -}}
-        {{- $profile := $face2x.Resize (printf "%sx" (string $halfWidth)) -}}        
+        {{- $halfWidth := math.Floor (div $profile2x.Width 2) -}}
+        {{- $profile := $profile2x.Resize (printf "%sx" (string $halfWidth)) -}}        
         <div id="profile-shadow" class="d-inline-block">
           <img id="profile"
                sizes="(max-width: 576px) {{ $profile.Width }}px,
