@@ -10,6 +10,6 @@ disableKinds = ['taxonomy', 'term']
 [params]
   author = 'Justin Tanner'
   github = 'https://github.com/justintanner'
-  og_image = '/og.png'
+  og_image = '/og.jpg'
   sitename = 'Justin Tanner: Computer Programmer'
 
