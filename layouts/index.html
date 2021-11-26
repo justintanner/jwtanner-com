@@ -56,11 +56,11 @@
 </div>
 
 <div class="container-fluid">
-  <h2 class="text-center fw-light py-4">Posts</h2>  
+  <h2 class="text-center fw-light my-4">Posts</h2>  
 </div>
 
 <div class="container-fluid">
-  <div class="container px-3 p-sm-5 px-md-0">
+  <div class="container px-3 px-sm-5 px-md-0">
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
