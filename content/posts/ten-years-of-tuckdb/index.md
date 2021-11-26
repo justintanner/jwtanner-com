@@ -33,10 +33,6 @@ After about 5 years of adding, re-organizing and uploading images of postcards w
 Richard Moulton working on the collection.
 {{< /bootstrap_figure >}}
 
-{{< bootstrap_figure src="entering.jpg" alt="Desks organizing photos" >}}
-Three workstations for scanning and re-organizing postcards.
-{{< /bootstrap_figure >}}
-
 Meanwhile, we created a sister website to the postcard website, TuckDB Ephemera. Tuck seems to have been involved in almost anything made from paper ranging from jigsaw puzzles, a vast library of books, greeting cards and more. Richard Moulton's daughter Alison Milling was working on her own collection of Tuck ephemera. Again we started by converting the MS Access database into a website. We are currently busy editing and uploading the second collection.
 
 {{< bootstrap_figure src="bear.jpg" alt="Mechanical Bear" >}}

@@ -36,11 +36,12 @@
   <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
 {{- end -}}
 
-{{- with .Params.image -}}
-  <meta itemprop="image" content="{{ . | absURL }}" />
-  <meta property="og:image" content="{{ . | absURL }}" /> 
-  <meta name="twitter:image" content="{{ . | absURL }}" />
-  <meta name="twitter:image:src" content="{{ . | absURL }}" /> 
+{{- $image := .Resources.GetMatch "cover.jpg" -}} 
+{{- with $image -}}
+  <meta itemprop="image" content="{{ .RelPermalink | absURL }}" />
+  <meta property="og:image" content="{{ .RelPermalink | absURL }}" /> 
+  <meta name="twitter:image" content="{{ .RelPermalink | absURL }}" />
+  <meta name="twitter:image:src" content="{{ .RelPermalink | absURL }}" /> 
 {{- else -}}
   <meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
   <meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
@@ -62,8 +63,6 @@
 
 <meta name="twitter:site" content="{{ .Site.Params.twitter }}">
 <meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
-<meta property="fb:app_id" content="538089519640705" />
-<meta property="fb:admins" content="100000686899395" />
 
 <meta name="keywords" content="" />
 <meta name="imagemode" content="force" />
