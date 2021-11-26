@@ -60,7 +60,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="container px-0 px-sm-5 px-md-0">
+  <div class="container px-5 px-md-0">
 
     {{- range (where .Site.RegularPages "Type" "posts") -}}
     {{- $cover := .Resources.GetMatch "cover.jpg" -}}
