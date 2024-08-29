@@ -1,4 +1,10 @@
-# Porting my Hammerspoon script to Karabiner
+---
+title: Porting my Hammerspoon script to Karabiner
+description: My impressions of Karabiner and why I moved away from Hammerspoon
+author: Justin Tanner
+date: 2024-08-29
+image: "cover.jpg"
+---
 
 After successfully [configuring Hammerspoon](https://jwtanner.com/posts/emacs-keybindings-to-rule-them-all/) to bring Emacs keybindings to every application on macOS, I decided to port my script to [Karabiner-Elements](https://karabiner-elements.pqrs.org/).
 
@@ -27,8 +33,8 @@ def main
 end
 ```
 
-
 This entry point controls the **three** major types of shortcuts: **Ctrl**, **Option** and the chord **Ctrl+x**. 
+
 ## Control Keys (ctrl)
 
 These are fundamental Emacs shortcuts for navigation and other basic actions. Most of these shortcuts are already supported in macOS by default and did not need to be remapped.
