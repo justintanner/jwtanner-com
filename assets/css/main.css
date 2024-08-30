@@ -93,3 +93,11 @@ pre {
 .h2, h2 {
   margin-top: 20px !important;  
 }
+
+
+img[src$='?center'] {
+  display: block;
+  margin: 1.0rem auto;
+  max-width: 100%;
+  height: auto;
+}

@@ -35,23 +35,24 @@ end
 
 This entry point controls the **three** major types of shortcuts: **Ctrl**, **Option** and the chord **Ctrl+x**. 
 
+[](#keymaps)
 ## Control Keys (ctrl)
 
 These are fundamental Emacs shortcuts for navigation and other basic actions. Most of these shortcuts are already supported in macOS by default and did not need to be remapped.
 
-![](ctrl.jpg)
+![](ctrl.jpg?center)
 
 ## Option Keys (option)
 
 Most Option (or Alt) shortcuts are supported by macOS by default. I wanted to provide basic Emacs compatibility for most apps, but I personally do not rely on Option shortcuts as they are harder to reach on the keyboard.
 
-![](option.jpg)
+![](option.jpg?center)
 
 ## C-x Chords (with extra shortcuts)
 
 Ctrl+X chords are my favorite. They do not conflict with existing OS shortcuts and there are many un-used chords which can be assigned to new tasks.
 
-![](ctrl_x.jpg)
+![](ctrl_x.jpg?center)
 
 * **N:** New shortcut
 * **R:** Remapped shortcut
@@ -71,9 +72,9 @@ To map these shortcuts correctly, you’ll need some browser plugins/extensions.
 
 After installing those extensions we’ll need to configure the shortcuts manually with the following values:
 
-![](firefox_tabs.jpg)
+![](firefox_tabs.jpg?center)
 
-![](chrome_tabs.jpg)
+![](chrome_tabs.jpg?center)
 
 ## Conclusion
 
