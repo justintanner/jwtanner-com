@@ -16,27 +16,45 @@ After successfully [configuring Hammerspoon](https://jwtanner.com/posts/emacs-ke
 
 ## Porting the Configuration
 
-Porting my Hammerspoon script to Karabiner wasn’t a simple copy-paste job. I had to port the code from Lua to Ruby. Before I started, I looked for existing [karabiner configurations](https://ke-complex-modifications.pqrs.org/) with Emacs keybindings. There were a few, but **Emacs keybindings (rev13)** by [tekezo](https://github.com/tekezo) was the closest to what I needed.
+Porting my Hammerspoon script to Karabiner wasn’t a simple copy-paste job. I had to port the code from Lua to JavaScript. Before I started, I looked for existing [karabiner configurations](https://ke-complex-modifications.pqrs.org/) with Emacs keybindings. There were a few, but **Emacs keybindings (rev13)** by [tekezo](https://github.com/tekezo) was the closest to what I needed.
 
 The main configuration Karabiner config file starts like this:
 
-```ruby
-def main
-  puts JSON.pretty_generate(
-    "title" => "Universal Emacs Keybindings",
-    "maintainers" => ["justintanner"],
-    "rules" => [
-      "description" => "Emacs Emulation in all apps without emacs keybindings (v1.2)",
-      "manipulators" => c_x + control_keys + option_keys
-    ]
+```javascript
+function main() {
+  console.log(
+    JSON.stringify(
+      {
+        title: 'Universal Emacs Keybindings',
+        maintainers: ['justintanner'],
+
+        rules: [
+          {
+            description: 'Emacs Emulation in all apps without emacs keybindings (v1.2)',
+            manipulators: manipulators(),
+          },
+        ],
+      },
+      null,
+      '  '
+    )
   )
-end
+}
+
+function manipulators() {
+  return [].concat(
+    // --- Comment to prevent line combination by Prettier ---
+    cx(),
+    controlKeys(),
+    optionKeys()
+  )
+}
 ```
 
 This entry point controls the **three** major types of shortcuts: **Ctrl**, **Option** and the chord **Ctrl+x**. 
 
 [](#keymaps)
-## Control Keys (Hctrl)
+## Control Keys (ctrl)
 
 These are fundamental Emacs shortcuts for navigation and other basic actions. Most of these shortcuts are already supported in macOS by default and did not need to be remapped.
 
