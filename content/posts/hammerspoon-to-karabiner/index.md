@@ -36,7 +36,7 @@ end
 This entry point controls the **three** major types of shortcuts: **Ctrl**, **Option** and the chord **Ctrl+x**. 
 
 [](#keymaps)
-## Control Keys (ctrl)
+## Control Keys (Hctrl)
 
 These are fundamental Emacs shortcuts for navigation and other basic actions. Most of these shortcuts are already supported in macOS by default and did not need to be remapped.
 
