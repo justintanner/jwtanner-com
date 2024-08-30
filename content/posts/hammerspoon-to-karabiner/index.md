@@ -103,5 +103,5 @@ If you want to try it yourself:
 
 ## Resources
 
-1. (Final Script)[https://github.com/justintanner/universal-emacs-keybindings/blob/master/universal_emacs_keybindings.json.js]
-2. (Github Repository)[https://github.com/justintanner/universal-emacs-keybindings]
+1. [Final Script](https://github.com/justintanner/universal-emacs-keybindings/blob/master/universal_emacs_keybindings.json.js)
+2. [Github Repository]([https://github.com/justintanner/universal-emacs-keybindings])
