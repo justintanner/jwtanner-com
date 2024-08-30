@@ -94,10 +94,14 @@ After installing those extensions we’ll need to configure the shortcuts manual
 
 ![](chrome_tabs.jpg?center)
 
-## Conclusion
+## The Results
 
-The move to Karabiner decreased input lag and reduced remapping bugs. If you want to try it yourself:
+If you want to try it yourself:
 
 1. Install [Karabiner-Elements](https://karabiner-elements.pqrs.org/) 
 2. Search for “Universal” on [karabiner configurations](https://ke-complex-modifications.pqrs.org/)  and enable the latest version (1.2)
 
+## Resources
+
+1. (Final Script)[https://github.com/justintanner/universal-emacs-keybindings/blob/master/universal_emacs_keybindings.json.js]
+2. (Github Repository)[https://github.com/justintanner/universal-emacs-keybindings]
