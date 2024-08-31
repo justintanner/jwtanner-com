@@ -53,7 +53,7 @@ function manipulators() {
 
 This entry point controls the **three** major types of shortcuts: **Ctrl**, **Option** and the chord **Ctrl+x**. 
 
-[](#keymaps)
+<a id="keymaps"></a>
 ## Control Keys (ctrl)
 
 These are fundamental Emacs shortcuts for navigation and other basic actions. Most of these shortcuts are already supported in macOS by default and did not need to be remapped.
