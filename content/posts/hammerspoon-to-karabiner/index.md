@@ -12,7 +12,7 @@ After successfully [configuring Hammerspoon](https://jwtanner.com/posts/emacs-ke
 
 1. **Speed:** Karabiner is fast even with complex scripts.
 2. **Upgrades:** The Karabiner project keeps up to date with new macOS releases.
-3. **A Better Tool for the Job:** [Hammerspoon](https://www.hammerspoon.org/) can do much more than key mapping. Karabiner is focused on shortcuts.
+3. **A Better Tool for the Job:** Karabiner is focused on shortcuts more than Hammerspoon.
 
 ## Porting the Configuration
 
