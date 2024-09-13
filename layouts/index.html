@@ -5,18 +5,18 @@
       <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 order-sm-2 text-center">
         {{- $profile2x := .Resources.GetMatch "profile.jpg" -}}
         {{- $halfWidth := math.Floor (div $profile2x.Width 2) -}}
-        {{- $profile := $profile2x.Resize (printf "%sx" (string $halfWidth)) -}}        
+        {{- $profile := $profile2x.Resize (printf "%sx" (string $halfWidth)) -}}
         <div id="profile-shadow" class="d-inline-block">
           <img id="profile"
                sizes="(max-width: 576px) {{ $profile.Width }}px,
-                      (max-width: 768px) {{ (sub $profile.Width 48) }}px, 
-                      (max-width: 992px) {{ (sub $profile.Width 32) }}px, 
-                      (max-width: 1200px) {{ (sub $profile.Width 16) }}px, 
-                      (min-width: 1201px) {{ $profile.Width }}px, 
+                      (max-width: 768px) {{ (sub $profile.Width 48) }}px,
+                      (max-width: 992px) {{ (sub $profile.Width 32) }}px,
+                      (max-width: 1200px) {{ (sub $profile.Width 16) }}px,
+                      (min-width: 1201px) {{ $profile.Width }}px,
                       {{ $profile.Width }}px"
                srcset="{{ $profile.RelPermalink }} {{ $profile.Width}}w,
                        {{ $profile2x.RelPermalink }} {{ $profile2x.Width}}w"
-               src="{{ $profile.RelPermalink }}"               
+               src="{{ $profile.RelPermalink }}"
                alt="A picture of my face">
         </div>
       </div>
@@ -45,7 +45,7 @@
               <span>M</span>
               <span>M</span>
               <span>E</span>
-              <span>R</span>              
+              <span>R</span>
             </div>
           </div>
           <div class="d-block"><a href="mailto:hey@jwtanner.com" class="btn btn-dark">Email me &nbsp;{{ partial "svgs/paper-plane.html" }}</a></div>
@@ -56,7 +56,7 @@
 </div>
 
 <div class="container-fluid">
-  <h2 class="text-center fw-light my-4">Posts</h2>  
+  <h2 class="text-center fw-light my-4">Posts</h2>
 </div>
 
 <div class="container-fluid">
@@ -71,7 +71,7 @@
           <a href="{{ .RelPermalink }}">
             {{- $cover232 := $cover.Fill "232x148 Center" -}}
             {{- $cover464 := $cover.Fill "464x296 Center" -}}
-            {{- $cover508 := $cover.Fill "508x326 Center" -}}                        
+            {{- $cover508 := $cover.Fill "508x326 Center" -}}
             {{- $cover1016 := $cover.Fill "1016x652 Center" -}}
 
             <img class="img-fluid rounded-start"
@@ -80,7 +80,7 @@
                          {{ $cover464.RelPermalink }} 464w,
                          {{ $cover508.RelPermalink }} 508w,
                          {{ $cover1016.RelPermalink }} 1016w"
-                 src="{{ $cover232.RelPermalink }}"                 
+                 src="{{ $cover232.RelPermalink }}"
                  alt="{{ .Title }}">
           </a>
         </div>
@@ -104,6 +104,7 @@
       {{ partial "svgs/bi-stack-overflow.html" }} <span class="d-none d-lg-inline">Stackoverflow</span><span class="d-inline d-lg-none">SO</span>
     </a>
     <a href="https://github.com/justintanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-github.html" }} Github</a>
+    <a href="https://x.com/fullcodetanner"  class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-twitter-x.html" }} Twitter</a>
   </div>
 </div>
 {{- end -}}
