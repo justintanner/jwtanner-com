@@ -48,7 +48,13 @@
               <span>R</span>
             </div>
           </div>
-          <div class="d-block"><a href="mailto:hey@jwtanner.com" class="btn btn-dark">Email me &nbsp;{{ partial "svgs/paper-plane.html" }}</a></div>
+          <div class="d-block">
+            <div class="d-flex justify-content-center justify-content-sm-start align-content-center">
+              <a href="mailto:hey@jwtanner.com" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover me-4">{{ partial "svgs/bi-envelope.html" }}<span class="d-none d-md-inline ms-md-1">Email</span></a>
+              <a href="https://x.com/fullcodetanner"  class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover me-4">{{ partial "svgs/bi-twitter-x.html" }}<span class="d-none d-md-inline">Twitter</span></a>
+              <a href="https://github.com/justintanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover me-4">{{ partial "svgs/bi-github.html" }}<span class="d-none d-md-inline ms-md-1">Github</span></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -75,6 +81,7 @@
             {{- $cover1016 := $cover.Fill "1016x652 Center" -}}
 
             <img class="img-fluid rounded-start"
+                 style="object-fit: cover; height: 100%;"
                  sizes="(min-width: 768px) 232px, 100vw"
                  srcset="{{ $cover232.RelPermalink }} 232w,
                          {{ $cover464.RelPermalink }} 464w,
@@ -99,12 +106,9 @@
 
 <div class="footer mt-auto py-4">
   <div class="d-flex justify-content-center">
-    <a href="mailto:hey@jwtanner.com" class="font-weight-bold text-dark text-decoration-none text-no-wrap text-decoration-onhover mx-3">{{ partial "svgs/bi-envelope.html" }} Email</a>
-    <a href="https://stackoverflow.com/users/609/justin-tanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">
-      {{ partial "svgs/bi-stack-overflow.html" }} <span class="d-none d-lg-inline">Stackoverflow</span><span class="d-inline d-lg-none">SO</span>
-    </a>
-    <a href="https://github.com/justintanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-github.html" }} Github</a>
-    <a href="https://x.com/fullcodetanner"  class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-twitter-x.html" }} Twitter</a>
+    <a href="mailto:hey@jwtanner.com" class="font-weight-bold text-dark text-decoration-none text-no-wrap text-decoration-onhover mx-3">{{ partial "svgs/bi-envelope.html" }}<span class="ms-1">Email</span></a>
+    <a href="https://x.com/fullcodetanner"  class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-twitter-x.html" }}<span class="">Twitter</span></a>
+    <a href="https://github.com/justintanner" class="font-weight-bold text-dark text-decoration-none text-nowrap text-decoration-onhover mx-3">{{ partial "svgs/bi-github.html" }}<span class="ms-1">Github</span></a>
   </div>
 </div>
 {{- end -}}
