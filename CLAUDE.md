@@ -1,122 +1,141 @@
-# Hugo Personal Blog Site Pattern
+# Thai Realty Website Pattern
 
-This site is a minimal Hugo blog focused on technical writing and personal projects. It uses Bootstrap for responsive design and Charter font for readable typography.
+This site is a multilingual Hugo-based Thai real estate website with internationalization support. It uses Tailwind CSS for responsive design and supports both Thai and English content.
 
 ## Configuration (`config.toml`)
 
-```toml
-baseURL = 'https://example.com/'
-languageCode = 'en-us'
-title = 'Your Name'
-pygmentsUseClassic = false
-pygmentsCodeFences = true
-pygmentsCodeFencesGuessSyntax = true
-pygmentsUseClasses = true
-disableKinds = ['taxonomy', 'term']
+Multi-language configuration with Thai and English:
+
+```yaml
+defaultContentLanguage: 'th'
+defaultContentLanguageInSubdir: true
+
+[languages]
+  [languages.th]
+    languageName = 'ไทย'
+    weight = 1
+    title = 'บริษัท อสังหาริมทรัพย์ไทย'
+    
+  [languages.en]
+    languageName = 'English'
+    weight = 2
+    title = 'Thai Realty Company'
 
 [params]
-  author = 'Your Name'
-  github = 'https://github.com/username'
-  og_image = '/og.jpg'
-  sitename = 'Your Name: Description'
+  company = 'Thai Realty Co., Ltd.'
+  phone = '+66-2-xxx-xxxx'
+  email = 'info@thairealty.com'
+  address = 'Bangkok, Thailand'
+  facebook = 'https://facebook.com/thairealty'
+  line = '@thairealty'
 ```
 
 ## Content Structure
 
-### Homepage (`content/_index.md`)
-```yaml
----
-title: "Profile"
-description: "Your contact info and blog"
-image: "profile.jpg"
----
-```
+### Homepage (`content/_index.th.md` / `content/_index.en.md`)
+Multilingual homepage with property search and featured listings.
 
-### Posts (`content/posts/*/index.md`)
-```yaml
----
-title: Post Title
-description: Brief description for cards and meta
-author: Your Name
-date: 2024-01-01
-image: "cover.jpg"
----
-```
+### Properties (`content/properties/*/index.md`)
+Property listings with multilingual support:
+- Image galleries with Hugo image processing
+- Price in THB with currency formatting
+- Location maps and amenities
+- Contact forms for inquiries
 
-Posts use page bundles with `index.md` and assets (cover.jpg, other images) in same folder.
+### Pages (`content/about/`, `content/services/`, `content/contact/`)
+Standard pages with language-specific content.
 
 ## Layout Templates
 
 ### Base Template (`layouts/_default/baseof.html`)
-- Minimal HTML5 structure with Bootstrap classes
-- Uses partial for `<head>` section
-- Block template for main content
+- Responsive HTML5 structure with Tailwind CSS classes
+- Language switcher in navigation
+- RTL support considerations for Thai script
+- SEO-optimized meta tags
 
 ### Homepage (`layouts/index.html`)
-- Profile section with rotated image and shadow effect
-- Posts grid with cover images and descriptions
-- Footer with social links
+- Hero section with property search form
+- Featured properties grid
+- Company information and testimonials
+- Contact information with Thai phone formatting
 
-### Post Template (`layouts/posts/single.html`)
-- Responsive cover images (desktop/mobile variants)
-- Charter font for body text
-- Back to posts navigation
+### Property Template (`layouts/properties/single.html`)
+- Image gallery with lightbox functionality
+- Property details with Thai/English formatting
+- Interactive map integration
+- Contact agent form
 
 ## CSS Architecture
 
-### Main Styles (`assets/css/main.css`)
-- Bootstrap icon alignment fix
-- Code block styling with rounded borders
-- Charter font family definitions
-- Responsive design with breakpoint-specific styles
-- Custom classes: `.gray-bg`, `.post`, `.text-decoration-onhover`
+### Tailwind CSS Setup
+- Configured for Thai typography and spacing
+- Custom color palette for real estate branding
+- Responsive utilities for mobile-first design
+- Thai font support (Sarabun, Prompt, or Kanit)
 
-### Typography (`assets/css/charter.css`)
-- Charter font face definitions for all weights/styles
-- Covers multiple character sets (Latin, Cyrillic, Vietnamese)
+### Key Tailwind Components
+- Navigation with language switcher
+- Property card components
+- Form elements with Thai styling
+- Map containers and overlays
 
-### Asset Pipeline (`layouts/partials/head.html`)
-- Conditional Charter font loading for posts section
-- CSS bundling and minification with fingerprinting
-- Bootstrap + main + Pygments CSS bundle
+## Internationalization Features
 
-## Custom Shortcodes
+### Language Support
+- Thai (primary) and English content
+- Language-specific URLs (/th/, /en/)
+- Automatic language detection
+- Currency formatting (THB, USD)
+- Date formatting for Thai locale
 
-### Bootstrap Figure (`layouts/shortcodes/bootstrap_figure.html`)
-- Responsive image with srcset generation
-- Multiple width variants for optimal loading
-- Figure/figcaption structure with center alignment
+### Content Management
+- Shared assets across languages
+- Language-specific images when needed
+- Consistent navigation structure
+- Localized contact information
 
-### Bootstrap YouTube (`layouts/shortcodes/bootstrap_youtube.html`)
-- Responsive YouTube embeds
+## Property Data Structure
 
-## Image Handling
-
-- Profile images with 2x retina support
-- Post cover images with multiple responsive variants
-- Automatic cropping and resizing using Hugo image processing
-- Images stored as page resources in post bundles
+### Front Matter Schema
+```yaml
+---
+title: "Property Title"
+price: 15000000
+currency: "THB"
+type: "condo"
+bedrooms: 3
+bathrooms: 2
+area: 120
+location: "Sukhumvit"
+coordinates: [13.7563, 100.5018]
+images: ["main.jpg", "bedroom.jpg", "kitchen.jpg"]
+features: ["pool", "gym", "parking"]
+---
+```
 
 ## Key Features
 
-- **No JavaScript** - Pure HTML/CSS site
-- **Responsive** - Mobile-first Bootstrap grid
-- **Performance** - Image optimization, CSS bundling
-- **Typography** - Charter font for readability
-- **Social** - Email, GitHub, Twitter links
-- **Code Highlighting** - Pygments with custom styling
+- **Multilingual** - Thai/English with proper i18n
+- **Mobile-First** - Responsive Tailwind CSS design
+- **Property Search** - Filtered listings by criteria
+- **Image Optimization** - Hugo image processing
+- **Maps Integration** - Property location mapping
+- **Contact Forms** - Lead generation with validation
+- **SEO Optimized** - Meta tags and structured data
 
 ## Development Commands
 
 ```bash
-hugo server -D     # Local development
-hugo               # Build for production
+hugo server -D                    # Local development
+hugo server -D --bind 0.0.0.0     # Network accessible
+hugo --minify                     # Production build
 ```
 
-## Customization Tips
+## Thai-Specific Considerations
 
-1. Replace social links in homepage and footer templates
-2. Update `params` in config.toml for site metadata
-3. Add new shortcodes for custom content types
-4. Modify CSS variables in main.css for color scheme
-5. Use page bundles for posts with multiple images
+1. **Typography** - Use web-safe Thai fonts (Sarabun, Prompt)
+2. **Number Formatting** - Thai number separators and currency
+3. **Address Format** - Thai address conventions
+4. **Phone Numbers** - Thai mobile and landline formats
+5. **Cultural Design** - Colors and imagery appropriate for Thai market
+6. **Legal Content** - Property disclosure requirements in Thai
