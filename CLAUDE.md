@@ -2,6 +2,19 @@
 
 This site is a multilingual Hugo-based Thai real estate website with internationalization support. It uses Tailwind CSS for responsive design and supports both Thai and English content.
 
+## Hugo Installation
+
+```bash
+# macOS
+brew install hugo
+
+# Linux (Ubuntu/Debian)
+sudo apt install hugo
+
+# Windows
+choco install hugo-extended
+```
+
 ## Configuration (`config.toml`)
 
 Multi-language configuration with Thai and English:
