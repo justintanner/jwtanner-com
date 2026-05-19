@@ -1,5 +1,5 @@
 baseURL = 'https://jwtanner.com/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'Justin Tanner'
 pygmentsUseClassic = false
 pygmentsCodeFences = true
@@ -11,5 +11,7 @@ disableKinds = ['taxonomy', 'term']
   author = 'Justin Tanner'
   github = 'https://github.com/justintanner'
   og_image = '/og.jpg'
-  sitename = 'Justin Tanner: Computer Programmer'
+  sitename = 'Justin Tanner: AI Agent Builder'
 
+[markup.goldmark.renderer]
+  unsafe = true

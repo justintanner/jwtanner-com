@@ -1,0 +1,55 @@
+{{- define "main" -}}
+<main class="archive-page">
+  <section class="archive-hero">
+    <div class="archive-container">
+      <a class="archive-back" href="/">{{ partial "svgs/bi-arrow-return-left.html" }} Home</a>
+      <p class="eyebrow">Archive</p>
+      <h1>Old posts and university projects</h1>
+      <p>This material is no longer the main homepage, but the original URLs stay online and indexable.</p>
+    </div>
+  </section>
+
+  <section class="archive-section">
+    <div class="archive-container">
+      <div class="archive-heading-row">
+        <h2>Writing</h2>
+        <a href="/posts/">All posts</a>
+      </div>
+
+      <div class="archive-list">
+        {{- range (where .Site.RegularPages.ByDate.Reverse "Type" "posts") -}}
+        <article class="archive-item">
+          <div>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Description }}</p>
+          </div>
+          <a class="archive-read" href="{{ .RelPermalink }}">Read</a>
+        </article>
+        {{- end -}}
+      </div>
+    </div>
+  </section>
+
+  <section class="archive-section archive-section-alt">
+    <div class="archive-container">
+      <div class="archive-heading-row">
+        <h2>University projects</h2>
+      </div>
+
+      <div class="legacy-grid">
+        <a class="legacy-card" href="/rtos/">
+          <span>Embedded systems</span>
+          <h3>A Real Time Operating System</h3>
+          <p>Archived CSC 460 RTOS report and source material.</p>
+        </a>
+        <a class="legacy-card" href="/led_wheel/">
+          <span>Hardware</span>
+          <h3>LED Wheel</h3>
+          <p>Archived persistence-of-vision hardware project with schematics, photos, and code.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+{{- end -}}
